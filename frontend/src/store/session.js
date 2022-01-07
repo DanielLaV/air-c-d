@@ -16,10 +16,10 @@ export const loadUser = (user) => {
     }
 };
 
-
-export const removeUser = (user) => ({
+export const removeUser = () => ({
     type: REMOVE_USER,
 });
+
 
 /* ------ SELECTORS / THUNKS ----- */
 
@@ -38,12 +38,36 @@ export const loginUser = (user) => async (dispatch) => {
     return res;
 };
 
-export const restoreUser = () => async dispatch => {
-    const response = await csrfFetch('/api/session');
-    const data = await response.json();
+export const signupUser = user => async dispatch => {
+    const { username, email, password } = user;
+    const res = await csrfFetch('/api/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            username,
+            email,
+            password
+        }),
+    });
+    const data = await res.json();
     dispatch(loadUser(data.user));
-    return response;
-  };
+    return res;
+};
+
+export const restoreUser = () => async dispatch => {
+    const res = await csrfFetch('/api/session');
+    const data = await res.json();
+    dispatch(loadUser(data.user));
+    return res;
+};
+
+export const logoutUser = () => async dispatch => {
+    const res = await csrfFetch('/api/session', {
+        method: 'DELETE'
+    });
+    dispatch(removeUser());
+    return res;
+};
 
 /* ------ REDUCER ------ */
 
