@@ -9,63 +9,57 @@ export const REMOVE_USER = 'REMOVE_USER';
 /* ------- ACTIONS ------- */
 
 export const loadUser = (user) => {
-    const { id, email, username, createdAt, updatedAt } = user;
+    // const { id, email, username, createdAt, updatedAt } = user;
     return {
         type: LOAD_USER,
-        user: {
-            id,
-            email,
-            username,
-            createdAt,
-            updatedAt
-        }
+        payload: user
     }
 };
 
+
 export const removeUser = (user) => ({
     type: REMOVE_USER,
-    user: null
 });
 
 /* ------ SELECTORS / THUNKS ----- */
 
 export const loginUser = (user) => async (dispatch) => {
-    const { id, password } = user;
+    const { credential, password } = user;
     const res = await csrfFetch(`/api/session`, {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            credential: id,
+            credential,
             password
         })
     });
-    const data = res.json();
-    console.log('DATA', data)
-    dispatch(loadUser(data));
+    const data = await res.json();
+    dispatch(loadUser(data.user));
+    return res;
 }
 
 /* ------ REDUCER ------ */
 
-export default function sessionReducer(state = {}, action) {
+const initialState = { user: null };
+
+const sessionReducer = (state = initialState, action) => {
     // const { id, email, username, createdAt, updatedAt } = action.user;
 
     switch (action.type) {
         case LOAD_USER: {
             const newState = Object.assign({}, state);
-            newState.user = {
-                ...action.user,
-                // id,
-                // email,
-                // username,
-                // createdAt,
-                // updatedAt
-            };
+            newState.user = action.payload;
             return newState;
         }
-        default: {
+        case REMOVE_USER: {
             const newState = Object.assign({}, state);
             newState.user = null;
             return newState;
         }
+        default: {
+            return state;
+        }
     }
-}
+};
+
+export default sessionReducer;
