@@ -27,7 +27,7 @@ export const removeUser = (user) => ({
     user: null
 });
 
-/* ------ SELECTORS ----- */
+/* ------ SELECTORS / THUNKS ----- */
 
 export const loginUser = (user) => async (dispatch) => {
     const { id, password } = user;
