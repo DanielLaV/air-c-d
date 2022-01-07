@@ -36,7 +36,14 @@ export const loginUser = (user) => async (dispatch) => {
     const data = await res.json();
     dispatch(loadUser(data.user));
     return res;
-}
+};
+
+export const restoreUser = () => async dispatch => {
+    const response = await csrfFetch('/api/session');
+    const data = await response.json();
+    dispatch(loadUser(data.user));
+    return response;
+  };
 
 /* ------ REDUCER ------ */
 
