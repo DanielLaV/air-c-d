@@ -10,7 +10,7 @@ This is perfect for:
 
 # Install
 To install Air CnD:
-* Download files
+* Download project
 * cd into /backend and run npm install
 * cd into /frontend and run npm install
 * run npm start in /backend
