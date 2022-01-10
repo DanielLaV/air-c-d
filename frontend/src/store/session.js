@@ -9,7 +9,6 @@ export const REMOVE_USER = 'REMOVE_USER';
 /* ------- ACTIONS ------- */
 
 export const loadUser = (user) => {
-    // const { id, email, username, createdAt, updatedAt } = user;
     return {
         type: LOAD_USER,
         payload: user
@@ -74,8 +73,6 @@ export const logoutUser = () => async dispatch => {
 const initialState = { user: null };
 
 const sessionReducer = (state = initialState, action) => {
-    // const { id, email, username, createdAt, updatedAt } = action.user;
-
     switch (action.type) {
         case LOAD_USER: {
             const newState = Object.assign({}, state);
