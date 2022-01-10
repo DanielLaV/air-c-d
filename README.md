@@ -1,4 +1,4 @@
-# air-c-d
+# Air CnD
 Air CnD is an Air BnB clone specializing in cats and dogs. Customers who are unable to own a pet can rent others' pets for a bit.
 This is perfect for:
 * Pet-lovers who are allergic to an animal  
