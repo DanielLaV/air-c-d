@@ -1,4 +1,15 @@
-#root {
+.navBar {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content:space-between;
+    list-style: none;
+}
+
+.sessionLinks {
+    display: flex;
+}
+
+.navLogin {
+    margin: 20px;
+    padding-left: 20px;
 }
