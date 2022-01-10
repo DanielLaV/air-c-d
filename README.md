@@ -6,3 +6,12 @@ This is perfect for:
 * Potential pet owners who want to test their compatibility with a specific animal or breed
 * Introducing children to a friendly animal
 * Anyone who wants to meet more pets!
+
+
+# Install
+To install Air CnD:
+* Download files
+* cd into /backend and run npm install
+* cd into /frontend and run npm install
+* run npm start in /backend
+* run npm start in /frontend
