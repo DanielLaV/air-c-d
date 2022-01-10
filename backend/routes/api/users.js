@@ -38,7 +38,9 @@ router.post(
 
         await setTokenCookie(res, user);
 
-        res.redirect('/api/session');
+        return res.json({
+          user,
+        });
     }),
 );
 
