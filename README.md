@@ -12,11 +12,11 @@ This is perfect for:
 To install Air CnD:
 * Create a user in PostgreSQL with CREATEDB privileges
 * Download project
-* cd into /backend and run npm install
-* cd into /frontend and run npm install
-* run npm run db:create
-* run npm run db:migrate
-* run npm run db:seed:all
-* run npm start in /backend
-* run npm start in /frontend
+* cd into /backend and run `npm install`
+* cd into /frontend and run `npm install`
+* run `npm run db:create`
+* run `npm run db:migrate`
+* run `npm run db:seed:all`
+* run `npm start` in /backend
+* run `npm start` in /frontend
 * Enjoy!
