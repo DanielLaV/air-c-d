@@ -32,14 +32,13 @@ router.post(
     '/',
     validateSignup,
     asyncHandler(async (req, res) => {
+      console.log('Inside post / ')
         const { email, password, username } = req.body;
         const user = await User.signup({ email, username, password });
 
         await setTokenCookie(res, user);
 
-        return res.json({
-            user,
-        });
+        res.redirect('/api/session');
     }),
 );
 
