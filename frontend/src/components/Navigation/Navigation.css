@@ -5,11 +5,12 @@
     list-style: none;
 }
 
-.sessionLinks {
-    display: flex;
+.userLinks {
+    margin: 20px;
+    padding-right: 20px;
 }
 
-.navLogin {
+.logo {
     margin: 20px;
     padding-left: 20px;
 }

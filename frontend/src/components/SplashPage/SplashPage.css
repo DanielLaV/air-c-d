@@ -1,0 +1,11 @@
+.mainImg {
+    background-image: url('../../images/Ino-1.jpg');
+    /* background: linear-gradient(0deg, #00000088 30%, #ffffff44 100%); */
+    background-color: white;
+    width: 800px;
+    height: 400px;
+}
+
+.splashText {
+    text-decoration: none;
+}
