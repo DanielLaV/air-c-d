@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
-const { Pet } = require('../../db/models');
+const { Pet, User, PetOwner, Image } = require('../../db/models');
 
 router.get(
-    '/dogs',
+    '/',
     asyncHandler(async (_req, res, next) => {
         const dogs = await Pet.findAll({
             where: { type: 'dog' },
@@ -53,9 +53,49 @@ router.get(
     }),
 );
 
-// router.post(
-//     '/dogs',
+router.post(
+    '/',
+    asyncHandler(async (req, res, next) => {
+        const { name, type, url, forKids } = req.body;
+        const { userId } = req.session.auth;
+        const user = await User.findByPk(userId);
+        if (user) {
+            const pet = await Pet.create({ name, type, forKids });
+            await PetOwner.create({
+                owner_id: userId,
+                pet_id: pet.id
+            });
+            await Image.create({
+                pet_id: pet.id,
+                url
+            });
+            res.json({ pet });
+        } else {
+            const err = new Error('Failed to add your pet');
+            err.status = 422;
+            err.title = "Failed to add pet";
+            err.errors = ['Something went wrong'];
+            return next(err);
+        }
+    }),
+);
 
-// );
+router.delete(
+    '/',
+    asyncHandler(async (req, res) => {
+        const { petId } = req.body;
+        const pet = await Pet.findByPk(petId);
+        await pet.destroy();
+        const petImage = await Image.findAll({
+            where: { pet_id: petId}
+        });
+        await petImage.destroy();
+        const petOwner = await PetOwner.findAll({
+            where: { pet_id: petId }
+        });
+        await petOwner.destroy();
+        return res.json({ message: 'success' });
+    })
+)
 
 module.exports = router;
