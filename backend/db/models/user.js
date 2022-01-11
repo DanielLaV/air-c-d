@@ -88,7 +88,7 @@ module.exports = (sequelize, DataTypes) => {
     const columnMapping = {
       through: "PetOwner",
       otherKey: "petId",
-      foreignKey: "ownerId"
+      foreignKey: "id"
     };
     User.belongsToMany(models.Pet, columnMapping);
   };

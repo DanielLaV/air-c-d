@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     const columnMapping = {
       through: "PetOwner",
       otherKey: "ownerId",
-      foreignKey: "petId"
+      foreignKey: "id"
     }
     Pet.belongsTo(models.User, columnMapping)
   };
