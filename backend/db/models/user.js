@@ -85,7 +85,12 @@ module.exports = (sequelize, DataTypes) => {
     return await User.scope('currentUser').findByPk(user.id);
   };
   User.associate = function (models) {
-    // associations can be defined here
+    const columnMapping = {
+      through: "PetOwner",
+      otherKey: "petId",
+      foreignKey: "ownerId"
+    };
+    User.belongsToMany(models.Pet, columnMapping);
   };
   return User;
 };
