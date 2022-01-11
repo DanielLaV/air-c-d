@@ -6,24 +6,10 @@ export const LOAD_OTHERS = "LOAD_OTHERS";
 
 /* ------ ACTIONS ------ */
 
-export const loadDogs = dogs => {
+export const loadPets = pets => {
     return {
         type: LOAD_DOGS,
-        payload: dogs,
-    }
-};
-
-export const loadCats = cats => {
-    return {
-        type: LOAD_CATS,
-        payload: cats,
-    }
-};
-
-export const loadOthers = others => {
-    return {
-        type: LOAD_OTHERS,
-        payload: others,
+        payload: pets,
     }
 };
 
@@ -62,17 +48,7 @@ const initialState = { pets: null };
 
 const petsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case LOAD_DOGS: {
-            const newState = Objects.assign({}, state);
-            newState.pets = action.payload;
-            return newState;
-        }
-        case LOAD_CATS: {
-            const newState = Objects.assign({}, state);
-            newState.pets = action.payload;
-            return newState;
-        }
-        case LOAD_OTHERS: {
+        case LOAD_PETS: {
             const newState = Objects.assign({}, state);
             newState.pets = action.payload;
             return newState;
