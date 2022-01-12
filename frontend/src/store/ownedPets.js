@@ -13,7 +13,7 @@ export const loadOwnedPets = ownedPets => {
     }
 };
 
-export const addOwnedPet = (userId, newPet) => {
+export const addOwnedPet = ({userId, newPet}) => {
     return {
         type: ADD_OWNED_PET,
         payload: { newPet, userId }
@@ -31,9 +31,9 @@ export const getOwnedPets = userId => async (dispatch) => {
     return res;
 }
 
-export const addNewPet = (user, pet) => async (dispatch) => {
-    const { userId } = user;
-    const { name, type, forKids, url } = pet;
+export const addNewPet = ({userId, newPet}) => async (dispatch) => {
+    const { userId } = userId;
+    const { name, type, forKids, url } = newPet;
     const res = await csrfFetch(`/api/pets`, {
         method: 'POST',
         body: JSON.stringify({

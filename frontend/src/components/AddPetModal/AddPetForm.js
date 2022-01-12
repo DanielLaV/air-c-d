@@ -1,20 +1,35 @@
 import { useDispatch } from "react-redux";
 import React, { useState } from 'react';
 import * as petActions from '../../store/ownedPets';
+import { useParams } from "react-router-dom";
 
 function AddPetForm() {
     const dispatch = useDispatch();
+    const userId = useParams();
     const [name, setName] = useState('');
     const [type, setType] = useState('dog');
     const [forKids, setForKids] = useState(false);
     const [url, setUrl] = useState('');
+    const [errors, setErrors] = useState([]);
 
 
     const handleSubmit = () => {
         e.preventDefault();
         setErrors([]);
-        return dispatch()
-    }
+
+        const newPet = {
+            name,
+            type,
+            forKids,
+            url
+        }
+        return dispatch(petActions.addOwnedPet({ userId, newPet })).catch(
+            async res => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors);
+            }
+        );
+    };
 
     return (
         <form onSubmit={handleSubmit}>
