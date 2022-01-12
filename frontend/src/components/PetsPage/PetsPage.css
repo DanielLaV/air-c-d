@@ -1,0 +1,5 @@
+.petTypeLinks {
+    display: flex;
+    list-style-type: none;
+    text-decoration: none;
+}

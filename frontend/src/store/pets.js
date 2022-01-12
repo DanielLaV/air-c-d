@@ -1,14 +1,14 @@
 import { csrfFetch } from "./csrf";
 
-export const LOAD_DOGS = "LOAD_DOGS";
-export const LOAD_CATS = "LOAD_CATS";
-export const LOAD_OTHERS = "LOAD_OTHERS";
+export const LOAD_PETS = "LOAD_PETS";
+// export const LOAD_CATS = "LOAD_CATS";
+// export const LOAD_OTHERS = "LOAD_OTHERS";
 
 /* ------ ACTIONS ------ */
 
 export const loadPets = pets => {
     return {
-        type: LOAD_DOGS,
+        type: LOAD_PETS,
         payload: pets,
     }
 };
@@ -20,7 +20,8 @@ export const getDogs = () => async (dispatch) => {
         method: 'GET',
     });
     const data = await res.json();
-    dispatch(loadDogs(data));
+    console.log('DATA is an android', data);
+    dispatch(loadPets(data));
     return res;
 }
 
@@ -29,7 +30,7 @@ export const getCats = () => async (dispatch) => {
         method: 'GET',
     });
     const data = await res.json();
-    dispatch(loadCats(data));
+    dispatch(loadPets(data));
     return res;
 }
 
@@ -38,7 +39,7 @@ export const getOthers = () => async (dispatch) => {
         method: 'GET',
     });
     const data = await res.json();
-    dispatch(loadOthers(data));
+    dispatch(loadPets(data));
     return res;
 }
 
@@ -49,7 +50,7 @@ const initialState = { pets: null };
 const petsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_PETS: {
-            const newState = Objects.assign({}, state);
+            const newState = Object.assign({}, state);
             newState.pets = action.payload;
             return newState;
         }
