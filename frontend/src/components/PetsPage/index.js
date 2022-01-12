@@ -11,7 +11,9 @@ function PetsPage() {
 
     const [petsType, setPetsType] = useState('dogs');
 
-    const updatePetsType = e => setPetsType(e.target.value.toLowerCase());
+    const updatePetsType = e => {
+        setPetsType(e.target.innerText.toLowerCase());
+    }
 
     useEffect(() => {
         // console.log('PETS IS ', pets)
@@ -23,6 +25,7 @@ function PetsPage() {
         setPetsType(petsType);
         if (petsType === 'dogs') {
             pets = dispatch(petActions.getDogs())
+            console.log('PETS28', pets)
         }
         if (petsType === 'cats') {
             pets = dispatch(petActions.getCats())
@@ -41,7 +44,7 @@ function PetsPage() {
             </ul>
             {console.log('PETS IS', pets)}
             <ul className='petImages'>
-                {pets.pets.map(pet => <li key={pet.id}> <Pet pet={pet} /> </li>)}
+                {pets?.pets?.map(pet => <li key={pet.id}> <Pet pet={pet} /> </li>)}
             </ul>
         </div>
     )

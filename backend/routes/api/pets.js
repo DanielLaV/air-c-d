@@ -7,7 +7,12 @@ router.get(
     asyncHandler(async (_req, res, next) => {
         const dogs = await Pet.findAll({
             where: { type: 'dog' },
+            include: [{
+                model: Image,
+                attributes: ["url"],
+            }],
         })
+        // console.log('DOGS IN API', dogs)
         if (dogs.length) res.json(dogs);
         else {
             const err = new Error('The dogs are running around the neighborhood! Try reloading to see if they come back.');
@@ -24,6 +29,10 @@ router.get(
     asyncHandler(async (_req, res, next) => {
         const cats = await Pet.findAll({
             where: { type: 'cat' },
+            include: [{
+                model: Image,
+                attributes: ["url"],
+            }],
         })
         if (cats.length) res.json(cats);
         else {
@@ -41,6 +50,10 @@ router.get(
     asyncHandler(async (_req, res, next) => {
         const pets = await Pet.findAll({
             where: { type: 'other' },
+            include: [{
+                model: Image,
+                attributes: ["url"],
+            }],
         })
         if (pets.length) res.json(pets);
         else {

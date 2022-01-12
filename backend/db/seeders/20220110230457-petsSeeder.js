@@ -285,12 +285,12 @@ module.exports = {
           forKids: true
         },
         {
-          name: 'Marty McFly',
+          name: 'Boxer',
           type: 'other',
           forKids: true
         },
         {
-          name: 'Boxer',
+          name: 'Marty McFly',
           type: 'other',
           forKids: true
         },

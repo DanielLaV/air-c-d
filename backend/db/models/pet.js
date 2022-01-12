@@ -10,12 +10,14 @@ module.exports = (sequelize, DataTypes) => {
     forKids: DataTypes.BOOLEAN
   }, {});
   Pet.associate = function(models) {
-    const columnMapping = {
+    const userMapping = {
       through: "PetOwner",
       otherKey: "ownerId",
       foreignKey: "id"
-    }
-    Pet.belongsTo(models.User, columnMapping)
+    };
+
+    Pet.belongsTo(models.User, userMapping);
+    Pet.hasMany(models.Image, { foreignKey: "id" });
   };
   return Pet;
 };

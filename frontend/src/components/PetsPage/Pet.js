@@ -2,8 +2,7 @@
 function Pet({pet}) {
     return (
         <div className="singlePet">
-            <p>Pet list</p>
-            <img src={pet.url} />
+            <img src={pet.Images[0].url} />
             <p><span>{pet.name}</span></p>
         </div>
     )
