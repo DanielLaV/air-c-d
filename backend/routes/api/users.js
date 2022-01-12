@@ -2,7 +2,7 @@ const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
 
 const { setTokenCookie } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { User, Pet } = require('../../db/models');
 
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -43,6 +43,18 @@ router.post(
         });
     }),
 );
+
+// Profile page
+router.get(
+  '/:userId',
+  asyncHandler( async (req, res, next) => {
+      const { userId } = req.params;
+      const pets = await Pet.findAll({
+          where: { ownerId: userId }
+      });
+      res.json(pets);
+  })
+)
 
 
 

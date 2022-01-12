@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import sessionReducer from './session';
 import petsReducer from './pets';
+import ownedPetsReducer from './ownedPets';
 
 
 
@@ -9,6 +10,7 @@ import petsReducer from './pets';
 const rootReducer = combineReducers({
   session: sessionReducer,
   pets: petsReducer,
+  ownedPets: ownedPetsReducer,
 });
 
 let enhancer;

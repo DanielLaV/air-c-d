@@ -70,7 +70,7 @@ router.post(
     '/',
     asyncHandler(async (req, res, next) => {
         const { name, type, url, forKids } = req.body;
-        const { userId } = req.session.auth;
+        const { userId } = req.body;
         const user = await User.findByPk(userId);
         if (user) {
             const pet = await Pet.create({ name, type, forKids });
@@ -82,7 +82,7 @@ router.post(
                 pet_id: pet.id,
                 url
             });
-            res.json({ pet });
+            res.json({ userId });
         } else {
             const err = new Error('Failed to add your pet');
             err.status = 422;
@@ -110,5 +110,7 @@ router.delete(
         return res.json({ message: 'success' });
     })
 )
+
+
 
 module.exports = router;

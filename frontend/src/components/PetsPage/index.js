@@ -42,7 +42,7 @@ function PetsPage() {
                 <li><button onClick={updatePetsType}>Cats</button></li>
                 <li><button onClick={updatePetsType}>Others</button></li>
             </ul>
-            {console.log('PETS IS', pets)}
+
             <ul className='petImages'>
                 {pets?.pets?.map(pet => <li key={pet.id}> <Pet pet={pet} /> </li>)}
             </ul>

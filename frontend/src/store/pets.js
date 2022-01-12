@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 export const LOAD_PETS = "LOAD_PETS";
 
+
 /* ------ ACTIONS ------ */
 
 export const loadPets = pets => {
@@ -52,9 +53,9 @@ const petsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_PETS: {
             let newState = Object.assign({}, state);
-            console.log('NewState 1', newState)
+            // console.log('NewState 1', newState)
             newState.pets = action.payload;
-            console.log('NewState 2', newState)
+            // console.log('NewState 2', newState)
 
             return newState;
         }

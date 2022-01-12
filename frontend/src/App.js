@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import SplashPage from "./components/SplashPage";
 import PetsPage from "./components/PetsPage";
+import ProfilePage from "./components/ProfilePage";
 import * as sessionActions from "./store/session";
 import SignupFormModal from "./components/SignupFormModal";
 
@@ -25,8 +26,11 @@ function App() {
           <Route exact path="/">
             <SplashPage />
           </Route>
-          <Route path="/pets">
+          <Route exact path="/pets">
             <PetsPage />
+          </Route>
+          <Route path="/users/:userId">
+            <ProfilePage />
           </Route>
         </Switch>
       )}
