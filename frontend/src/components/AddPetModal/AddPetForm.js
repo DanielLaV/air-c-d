@@ -1,11 +1,11 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from 'react';
 import * as petActions from '../../store/ownedPets';
-import { useParams } from "react-router-dom";
+
 
 function AddPetForm() {
     const dispatch = useDispatch();
-    const userId = useParams();
+    const userId = useSelector(state => state.session.user.id);
     const [name, setName] = useState('');
     const [type, setType] = useState('dog');
     const [forKids, setForKids] = useState(false);
@@ -13,7 +13,7 @@ function AddPetForm() {
     const [errors, setErrors] = useState([]);
 
 
-    const handleSubmit = () => {
+    const handleSubmit = e => {
         e.preventDefault();
         setErrors([]);
 
