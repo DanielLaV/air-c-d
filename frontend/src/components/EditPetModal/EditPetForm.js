@@ -5,15 +5,16 @@ import * as petActions from '../../store/ownedPets';
 import { useHistory } from 'react-router-dom';
 
 
-function EditPetForm() {
+function EditPetForm({pet}) {
     const dispatch = useDispatch();
     const history = useHistory();
+    console.log('EDIT PET IS ', pet);
 
     const userId = useSelector(state => state.session.user.id);
-    const [name, setName] = useState('');
-    const [type, setType] = useState('');
-    const [forKids, setForKids] = useState(false);
-    const [url, setUrl] = useState('');
+    const [name, setName] = useState(pet.Pets[0].name);
+    const [type, setType] = useState(pet.Pets[0].type);
+    const [forKids, setForKids] = useState(pet.Pets[0].forKids);
+    const [url, setUrl] = useState(pet.Pets[0].Images[0].url);
     const [errors, setErrors] = useState([]);
 
 
@@ -22,13 +23,14 @@ function EditPetForm() {
         setErrors([]);
 
         const editedPet = {
+            petId: pet.id,
             userId,
             name,
             type,
             forKids,
             url
         }
-        dispatch(petActions.editOwnedPet(editedPet))
+        dispatch(petActions.editPet(editedPet))
         history.go(0);
     };
 
@@ -62,7 +64,7 @@ function EditPetForm() {
             </label>
             <label>
                 Pet type
-                <select required defaultValue="select" onChange={e => setType(e.target.value)}>
+                <select required defaultValue={type} onChange={e => setType(e.target.value)}>
                     <option value='select' disabled>Select a type</option>
                     <option value='dog'>Dog</option>
                     <option value='cat'>Cat</option>
