@@ -6,9 +6,10 @@ import './SplashPage.css';
 
 function SplashPage() {
     return (
-        <div className='mainImg'>
-            <p>Want to play?</p>
-            <a className='splashText' href='/pets'>I'm waiting </a>
+        <div className='splash'>
+            <div className='mainImg'>
+                <a className='petsLink' href='/pets'>Come Play!</a>
+            </div>
         </div>
     )
 }

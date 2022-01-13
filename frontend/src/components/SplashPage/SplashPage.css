@@ -1,11 +1,26 @@
+.splash {
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    justify-content: center;
+    max-width: 85vw;
+}
+
 .mainImg {
     background-image: url('../../images/Ino-1.jpg');
     /* background: linear-gradient(0deg, #00000088 30%, #ffffff44 100%); */
     /* background-color: red; */
-    width: 800px;
-    height: 400px;
+    display:flex;
+    min-width: 85vw;
+    min-height: 45vh;
+    border-radius: 5%;
 }
 
-.splashText {
+.petsLink {
+    align-self: center;
+    position: absolute;
     text-decoration: none;
+    border-radius: 10%;
+    background-color: #F6FBEC;
+    margin-left: 40px;
 }
