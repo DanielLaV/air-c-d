@@ -25,15 +25,17 @@ function ProfilePet({ pet, userId = null }) {
 
     return (
         <div className="singlePetContainer">
-            <img className="singlePet" src={pet.Pets[0].Images[0]?.url} />
-            <p><span>{pet.Pets[0].name}</span></p>
+            <img className="petImage" src={pet.Pets[0].Images[0]?.url} />
+            <div className="belowPetContainer">
+            <p className="petName">{pet.Pets[0].name}</p>
             {userId && (
-                <div className="profileButtons">
-                    <button className="profileEditButton" onClick={() => setIsEditingPet(true)}>Edit</button>
+                <div className="petButtons">
+                    <button className="petEditButton" onClick={() => setIsEditingPet(true)}>Edit</button>
                     {(+userId === +userPage) && isEditingPet && editModal}
-                    <button className="profileDeleteButton" onClick={onDeleteClick}>Delete</button>
+                    <button className="petDeleteButton" onClick={onDeleteClick}>Delete</button>
                 </div>
             )}
+            </div>
         </div>
     )
 }

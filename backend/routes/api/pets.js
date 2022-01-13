@@ -80,7 +80,7 @@ router.post(
                 { name, type, forKids},
                 { where: { id: petId }}
             );
-            await Pet.update(
+            await Image.update(
                 { url },
                 { where: { petId }}
             );
