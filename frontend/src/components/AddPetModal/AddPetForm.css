@@ -1,0 +1,41 @@
+.addPet form {
+    margin: 0 auto;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 40px;
+}
+
+.name {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.imageUrl {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.petType {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.kidFriendly {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.newPetClick {
+    margin: 10px;
+    width: 65%;
+    align-self: center;
+}

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import * as petActions from '../../store/ownedPets';
 // import * as ownedPetActions from '../../store/ownedPets';
 import { useHistory } from 'react-router-dom';
+import './AddPetForm.css';
 
 
 function AddPetForm() {
@@ -34,52 +35,54 @@ function AddPetForm() {
 
 
     return (
-        <form onSubmit={handleSubmit}>
-            <ul>
-                {errors.map((error, idx) => (
-                    <li key={idx}>{error}</li>
-                ))}
-            </ul>
-            <label>
-                Name
-                <input
-                    type="text"
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                    required
-                    placeholder="Name"
-                />
-            </label>
-            <label>
-                Picture URL
-                <input
-                    type="text"
-                    value={url}
-                    onChange={e => setUrl(e.target.value)}
-                    required
-                    placeholder="www.cutestdogever.edu"
-                />
-            </label>
-            <label>
-                Pet type
-                <select required defaultValue="select" onChange={e => setType(e.target.value)}>
-                    <option value='select' disabled>Select a type</option>
-                    <option value='dog'>Dog</option>
-                    <option value='cat'>Cat</option>
-                    <option value='other'>All others</option>
-                </select>
-            </label>
-            <label>
-                Kid Friendly?
-                <input
-                    type='checkbox'
-                    name='forKids'
-                    onChange={() => setForKids(!forKids)}
-                    checked={forKids}
-                />
-            </label>
-            <button>Add New Pet</button>
-        </form>
+        <div className="addPet">
+            <form onSubmit={handleSubmit}>
+                <ul>
+                    {errors.map((error, idx) => (
+                        <li key={idx}>{error}</li>
+                    ))}
+                </ul>
+                <label className="name">
+                    Name
+                    <input
+                        type="text"
+                        value={name}
+                        onChange={e => setName(e.target.value)}
+                        required
+                        placeholder="Name"
+                    />
+                </label>
+                <label className="imageUrl">
+                    Image URL
+                    <input
+                        type="text"
+                        value={url}
+                        onChange={e => setUrl(e.target.value)}
+                        required
+                        placeholder="www.cutestdogever.edu"
+                    />
+                </label>
+                <label className="petType">
+                    Pet type
+                    <select required defaultValue="select" onChange={e => setType(e.target.value)}>
+                        <option value='select' disabled>Select a type</option>
+                        <option value='dog'>Dog</option>
+                        <option value='cat'>Cat</option>
+                        <option value='other'>All others</option>
+                    </select>
+                </label>
+                <label className="kidFriendly">
+                    Kid Friendly?
+                    <input
+                        type='checkbox'
+                        name='forKids'
+                        onChange={() => setForKids(!forKids)}
+                        checked={forKids}
+                    />
+                </label>
+                <button className="newPetClick">Add New Pet</button>
+            </form>
+        </div>
     )
 }
 
