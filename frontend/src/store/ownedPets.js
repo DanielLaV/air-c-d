@@ -4,6 +4,7 @@ import { csrfFetch } from "./csrf";
 export const LOAD_OWNED_PETS = "LOAD_OWNED_PETS";
 export const ADD_OWNED_PET = "ADD_OWNED_PET";
 export const EDIT_OWNED_PET = "EDIT_OWNED_PET";
+export const DELETE_OWNED_PET = "DELETE_OWNED_PET";
 
 
 
@@ -24,10 +25,17 @@ export const addOwnedPet = (newPet) => {
     }
 }
 
-export const editOwnedPet = (editedPet) => {
+export const editOwnedPet = ownedPets => {
     return {
         type: EDIT_OWNED_PET,
-        payload: editedPet
+        payload: ownedPets
+    }
+}
+
+export const deleteOwnedPet = ownedPets => {
+    return {
+        type: DELETE_OWNED_PET,
+        payload: ownedPets
     }
 }
 
@@ -44,7 +52,7 @@ export const getOwnedPets = userId => async (dispatch) => {
 }
 
 export const addNewPet = (newPet) => async (dispatch) => {
-console.log(newPet, 'NEW PET');
+    console.log(newPet, 'NEW PET');
     // const { name, type, forKids, url } = newPet;
     const res = await csrfFetch(`/api/pets`, {
         method: 'POST',
@@ -59,7 +67,7 @@ console.log(newPet, 'NEW PET');
 }
 
 export const editPet = (editedPet) => async (dispatch) => {
-console.log(editedPet, 'EDITED PET');
+    console.log(editedPet, 'EDITED PET');
     // const { name, type, forKids, url } = newPet;
     const res = await csrfFetch(`/api/pets`, {
         method: 'POST',
@@ -74,7 +82,15 @@ console.log(editedPet, 'EDITED PET');
 }
 
 export const deletePet = pet => async (dispatch) => {
-    const res = await csrfFetch(`/api/pets/${pet.id}`)
+    const res = await csrfFetch(`/api/pets/${pet.id}`, {
+        method: 'DELETE',
+        body: JSON.stringify(
+            pet
+        )
+    })
+    const data = await res.json();
+    dispatch(deleteOwnedPet(data));
+    return res;
 }
 
 /* ----- REDUCER ------ */
@@ -91,9 +107,19 @@ const ownedPetsReducer = (state = initialState, action) => {
         }
         case ADD_OWNED_PET: {
             let newState = Object.assign({}, state);
-            console.log('payload', action.payload);
-            newState = {...newState,
-                [action.payload.id]: action.payload};
+            // console.log('payload', action.payload);
+            newState = {
+                ...newState,
+                [action.payload.id]: action.payload
+            };
+            return newState;
+        }
+        case DELETE_OWNED_PET: {
+            let newState = Object.assign({}, state);
+            newState = {
+                ...newState,
+                [action.payload.id]: null
+            };
             return newState;
         }
         default: return state;

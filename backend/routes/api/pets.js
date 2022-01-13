@@ -125,17 +125,16 @@ router.post(
 router.delete(
     '/:petId',
     asyncHandler(async (req, res) => {
-        const { petId } = req.body;
-        const petImage = await Image.findAll({
-            where: { petId }
-        });
-        await petImage.destroy();
-        const petOwner = await PetOwner.findAll({
-            where: { petId }
-        });
-        await petOwner.destroy();
-        const pet = await Pet.findByPk(petId);
-        await pet.destroy();
+        console.log('in the delete route')
+        const { petId } = req.params;
+        // const petImage = await Image.findAll({
+        //     where: { petId }
+        // });
+        // if (petImage) await petImage.destroy();
+        await Image.destroy({ where: { petId }});
+        await PetOwner.destroy({ where: { petId }});
+        // await petOwner.destroy();
+        await Pet.destroy({ where: { id: petId }});
         return res.json({ message: 'success' });
     })
 )
