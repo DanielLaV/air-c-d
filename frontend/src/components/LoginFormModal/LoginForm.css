@@ -2,3 +2,35 @@
     color: white;
     background-color: purple;
 }
+
+.login {
+    padding: 60px 0;
+}
+
+.login form {
+    margin: 0 auto;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 40px;
+}
+
+.username {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.password {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.loginClick {
+    width: 50%;
+    align-self: center;
+}

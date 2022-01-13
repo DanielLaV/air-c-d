@@ -3,6 +3,7 @@ import { Modal } from '../../context/Modal';
 import LoginForm from './LoginForm';
 import { loginUser } from '../../store/session';
 import { useDispatch } from 'react-redux';
+import './LoginForm.css';
 
 function LoginFormModal() {
   const [showModal, setShowModal] = useState(false);
