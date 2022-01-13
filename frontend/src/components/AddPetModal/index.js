@@ -7,7 +7,7 @@ function AddPetFormModal() {
 
     return (
         <>
-            <button className='addPetButton' onClick={() => setShowModal(true) }>Add new pet</button>
+            {/* <button className='addPetButton' onClick={() => setShowModal(true) }>Add new pet</button> */}
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <AddPetForm />

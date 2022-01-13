@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './ProfilePage.css';
 import EditPetFormModal from "../EditPetModal";
 // import { useSelector } from 'react-redux';
 import { useParams, useHistory } from "react-router-dom";
@@ -23,8 +24,8 @@ function ProfilePet({ pet, userId = null }) {
     }
 
     return (
-        <div className="singlePet">
-            <img src={pet.Pets[0].Images[0]?.url} />
+        <div className="singlePetContainer">
+            <img className="singlePet" src={pet.Pets[0].Images[0]?.url} />
             <p><span>{pet.Pets[0].name}</span></p>
             {userId && (
                 <div className="profileButtons">
