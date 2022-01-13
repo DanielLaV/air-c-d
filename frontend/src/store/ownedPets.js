@@ -67,17 +67,19 @@ export const addNewPet = (newPet) => async (dispatch) => {
 }
 
 export const editPet = (editedPet) => async (dispatch) => {
-    console.log(editedPet, 'EDITED PET');
     // const { name, type, forKids, url } = newPet;
-    const res = await csrfFetch(`/api/pets`, {
+    console.log('=========EDITED PET 1', editedPet);
+
+    const res = await csrfFetch(`/api/pets/${editedPet.petId}`, {
         method: 'POST',
         body: JSON.stringify(
             editedPet
-        )
-    })
+            )
+        })
+        console.log('=========EDITED PET 2', editedPet);
     const data = await res.json();
     // console.log('DATA IS AN ANDROID', data);
-    dispatch(addOwnedPet(data));
+    dispatch(editOwnedPet(data));
     return res;
 }
 

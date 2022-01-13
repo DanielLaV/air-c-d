@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from 'react';
-import * as petActions from '../../store/ownedPets';
-// import * as ownedPetActions from '../../store/ownedPets';
+// import * as petActions from '../../store/ownedPets';
+import * as ownedPetActions from '../../store/ownedPets';
 import { useHistory } from 'react-router-dom';
 
 
 function EditPetForm({pet}) {
     const dispatch = useDispatch();
     const history = useHistory();
-    console.log('EDIT PET IS ', pet);
+    // console.log('EDIT PET IS ', pet);
 
     const userId = useSelector(state => state.session.user.id);
     const [name, setName] = useState(pet.Pets[0].name);
@@ -30,7 +30,7 @@ function EditPetForm({pet}) {
             forKids,
             url
         }
-        dispatch(petActions.editPet(editedPet))
+        dispatch(ownedPetActions.editPet(editedPet))
         history.go(0);
     };
 
@@ -80,7 +80,7 @@ function EditPetForm({pet}) {
                     checked={forKids}
                 />
             </label>
-            <button>Add New Pet</button>
+            <button>Edit Pet</button>
         </form>
     )
 }

@@ -67,6 +67,37 @@ router.get(
 );
 
 router.post(
+    '/:petId',
+    asyncHandler(async (req, res, next) => {
+        console.log('IN THE /pets/petId route');
+        const { userId, petId, name, type, url, forKids } = req.body;
+
+        // const user = await User.findByPk(userId);
+        if (userId) {
+            // const pet = await Pet.findByPk(petId);
+            // const image = await Image.findOne({ where: petId });
+            await Pet.update(
+                { name, type, forKids},
+                { where: { id: petId }}
+            );
+            await Pet.update(
+                { url },
+                { where: { petId }}
+            );
+            // console.log('PET IS ', pet)
+            // console.log('image IS ', image)
+            res.json("Your pet has been edited");
+        } else {
+            const err = new Error('Failed to add your pet');
+            err.status = 422;
+            err.title = "Failed to add pet";
+            err.errors = ['Something went wrong'];
+            return next(err);
+        }
+    }),
+);
+
+router.post(
     '/',
     asyncHandler(async (req, res, next) => {
         console.log("HELLO");
@@ -95,32 +126,6 @@ router.post(
     }),
 );
 
-router.post(
-    '/:petId',
-    asyncHandler(async (req, res, next) => {
-        const { name, type, url, forKids } = req.body;
-        const { userId } = req.params;
-        const user = await User.findByPk(userId);
-        if (user) {
-            const pet = await Pet.create({ name, type, forKids });
-            await PetOwner.create({
-                owner_id: userId,
-                pet_id: pet.id
-            });
-            await Image.create({
-                pet_id: pet.id,
-                url
-            });
-            res.json({ userId });
-        } else {
-            const err = new Error('Failed to add your pet');
-            err.status = 422;
-            err.title = "Failed to add pet";
-            err.errors = ['Something went wrong'];
-            return next(err);
-        }
-    }),
-);
 
 router.delete(
     '/:petId',
