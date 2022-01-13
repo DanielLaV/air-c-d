@@ -91,6 +91,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "id"
     };
     User.belongsToMany(models.Pet, columnMapping);
+    // User.belongsTo(models.PetOwner, { foreignKey: "owner_id" });
   };
   return User;
 };

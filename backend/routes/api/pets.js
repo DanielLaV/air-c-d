@@ -93,18 +93,45 @@ router.post(
     }),
 );
 
+router.post(
+    '/:petId',
+    asyncHandler(async (req, res, next) => {
+        const { name, type, url, forKids } = req.body;
+        const { userId } = req.params;
+        const user = await User.findByPk(userId);
+        if (user) {
+            const pet = await Pet.create({ name, type, forKids });
+            await PetOwner.create({
+                owner_id: userId,
+                pet_id: pet.id
+            });
+            await Image.create({
+                pet_id: pet.id,
+                url
+            });
+            res.json({ userId });
+        } else {
+            const err = new Error('Failed to add your pet');
+            err.status = 422;
+            err.title = "Failed to add pet";
+            err.errors = ['Something went wrong'];
+            return next(err);
+        }
+    }),
+);
+
 router.delete(
-    '/',
+    '/:petId',
     asyncHandler(async (req, res) => {
         const { petId } = req.body;
         const pet = await Pet.findByPk(petId);
         await pet.destroy();
         const petImage = await Image.findAll({
-            where: { pet_id: petId}
+            where: { petId }
         });
         await petImage.destroy();
         const petOwner = await PetOwner.findAll({
-            where: { pet_id: petId }
+            where: { petId }
         });
         await petOwner.destroy();
         return res.json({ message: 'success' });

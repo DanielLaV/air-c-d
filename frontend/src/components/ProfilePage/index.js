@@ -7,7 +7,8 @@ import AddPetFormModal from '../AddPetModal';
 
 function ProfilePage() {
 
-    const [ownedPets, setOwnedPets] = useState(useSelector(state => state.ownedPets));
+    let pets = useSelector(state => state.ownedPets);
+    const [ownedPets, setOwnedPets] = useState(pets);
     const [isAddingPet, setIsAddingPet] = useState(false);
 
     const userId = useSelector(state => state.session.user.id);
@@ -15,7 +16,7 @@ function ProfilePage() {
     const petModal = (<AddPetFormModal setIsAddingPet={setIsAddingPet} setOwnedPets={setOwnedPets} />)
 
     useEffect(() => {
-        dispatch(ownedPetActions.getOwnedPets());
+        dispatch(ownedPetActions.getOwnedPets(userId));
     }, [dispatch]);
 
 
@@ -23,9 +24,11 @@ function ProfilePage() {
         <div className='profilePage'>
             <button className='addPetButton' onClick={isAddingPet => setIsAddingPet(!isAddingPet)}>Add Pet</button>
             {isAddingPet && petModal}
-            <ul className='ownedPetsList'>
+        {console.log('OWNED PETS', ownedPets)}
+        {console.log('PETS', pets)}
+            {/* <ul className='ownedPetsList'>
                 {ownedPets?.map(pet => <li key={pet.id}> <Pet pet={pet} userId={userId} /> </li>)}
-            </ul>
+            </ul> */}
         </div>
     )
 
