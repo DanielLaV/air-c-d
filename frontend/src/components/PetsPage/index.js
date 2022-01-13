@@ -43,9 +43,9 @@ function PetsPage() {
                 <li><button onClick={updatePetsType}>Others</button></li>
             </ul>
 
-            <ul className='petImages'>
-                {pets?.pets?.map(pet => <li key={pet.id}> <Pet pet={pet} /> </li>)}
-            </ul>
+            <div className='petImagesContainer'>
+                {pets?.pets?.map(pet => <div key={pet.id}> <Pet pet={pet} /> </div>)}
+            </div>
         </div>
     )
 }

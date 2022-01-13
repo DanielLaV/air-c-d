@@ -37,9 +37,9 @@ function ProfilePage() {
         <div className='profilePage'>
             <button className='addPetButton' onClick={isAddingPet => setIsAddingPet(true)}>Add Pet</button>
             {(+userId === +userPage) && isAddingPet && petModal}
-            <ul className='ownedPetsList'>
-                {Array.isArray(ownedPets) && ownedPets?.map(pet => (<li key={pet.id}> <ProfilePet pet={pet} userId={userId} /> </li>))}
-            </ul>
+            <div className='ownedPetsContainer'>
+                {Array.isArray(ownedPets) && ownedPets?.map(pet => (<div className='ownedPetsImage' key={pet.id}> <ProfilePet pet={pet} userId={userId} /> </div>))}
+            </div>
         </div>
     )
 

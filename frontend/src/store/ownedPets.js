@@ -3,7 +3,7 @@ import { csrfFetch } from "./csrf";
 
 export const LOAD_OWNED_PETS = "LOAD_OWNED_PETS";
 export const ADD_OWNED_PET = "ADD_OWNED_PET";
-export const EDIT_OWNED_PET = "EDIT_OWNED_PET";
+// export const EDIT_OWNED_PET = "EDIT_OWNED_PET";
 export const DELETE_OWNED_PET = "DELETE_OWNED_PET";
 
 
@@ -25,12 +25,12 @@ export const addOwnedPet = (newPet) => {
     }
 }
 
-export const editOwnedPet = ownedPets => {
-    return {
-        type: EDIT_OWNED_PET,
-        payload: ownedPets
-    }
-}
+// export const editOwnedPet = ownedPets => {
+//     return {
+//         type: EDIT_OWNED_PET,
+//         payload: ownedPets
+//     }
+// }
 
 export const deleteOwnedPet = ownedPets => {
     return {
@@ -68,7 +68,7 @@ export const addNewPet = (newPet) => async (dispatch) => {
 
 export const editPet = (editedPet) => async (dispatch) => {
     // const { name, type, forKids, url } = newPet;
-    console.log('=========EDITED PET 1', editedPet);
+    // console.log('=========EDITED PET 1', editedPet);
 
     const res = await csrfFetch(`/api/pets/${editedPet.petId}`, {
         method: 'POST',
@@ -76,10 +76,10 @@ export const editPet = (editedPet) => async (dispatch) => {
             editedPet
             )
         })
-        console.log('=========EDITED PET 2', editedPet);
+        // console.log('=========EDITED PET 2', editedPet);
     const data = await res.json();
     // console.log('DATA IS AN ANDROID', data);
-    dispatch(editOwnedPet(data));
+    dispatch(loadOwnedPets(data));
     return res;
 }
 

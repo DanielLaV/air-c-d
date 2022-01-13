@@ -1,3 +1,4 @@
+import { default as logo } from "../../images/logo-text-right.svg";
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -5,6 +6,7 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 import SignupFormModal from '../SignupFormModal';
+
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
@@ -25,8 +27,10 @@ function Navigation({ isLoaded }){
 
   return (
     <ul className='navBar'>
-      <li className='logo'>
-        <NavLink exact to="/">LOGO</NavLink>
+      <li className='logoListItem'>
+        <NavLink exact to="/">
+          <img className="logo" src={logo} />
+        </NavLink>
       </li>
       <li className='sessionLinks'>
         {isLoaded && sessionLinks}
