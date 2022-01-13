@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
-import AddPetForm from './AddPetForm';
+import EditPetForm from './EditPetForm';
 
-function AddPetFormModal() {
+function EditPetFormModal() {
     const [showModal, setShowModal] = useState(true);
 
     return (
         <>
-            <button className='addPetButton' onClick={() => setShowModal(true) }>Add new pet</button>
+            <button className='editPetButton' onClick={() => setShowModal(true) }>Edit</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <AddPetForm />
+                    <EditPetForm />
                 </Modal>
             )}
         </>
     )
 }
 
-export default AddPetFormModal;
+export default EditPetFormModal;

@@ -18,11 +18,11 @@ export const getDogs = () => async (dispatch) => {
     const res = await csrfFetch('/api/pets', {
         method: 'GET',
     });
-    console.log('RES IN THE THUNK IS', res);
+    // console.log('RES IN THE THUNK IS', res);
     const data = await res.json();
-    console.log('DATA is an android', data);
-    console.log('DATA type', typeof data);
-    console.log('DATA is array', Array.isArray(data));
+    // console.log('DATA is an android', data);
+    // console.log('DATA type', typeof data);
+    // console.log('DATA is array', Array.isArray(data));
     dispatch(loadPets(data));
     return res;
 }

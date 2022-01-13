@@ -48,6 +48,7 @@ router.get(
   '/:userId',
   asyncHandler(async (req, res, next) => {
     const { userId } = req.params;
+    console.log('userId in backend', userId);
     const pets = await PetOwner.findAll({
       where: { ownerId: userId },
       include: [

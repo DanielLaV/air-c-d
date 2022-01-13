@@ -1,17 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as petActions from '../../store/ownedPets';
 // import * as ownedPetActions from '../../store/ownedPets';
 import { useHistory } from 'react-router-dom';
 
 
-function AddPetForm() {
+function EditPetForm() {
     const dispatch = useDispatch();
     const history = useHistory();
 
     const userId = useSelector(state => state.session.user.id);
     const [name, setName] = useState('');
-    const [type, setType] = useState('dog');
+    const [type, setType] = useState('');
     const [forKids, setForKids] = useState(false);
     const [url, setUrl] = useState('');
     const [errors, setErrors] = useState([]);
@@ -21,14 +21,14 @@ function AddPetForm() {
         e.preventDefault();
         setErrors([]);
 
-        const newPet = {
+        const editedPet = {
             userId,
             name,
             type,
             forKids,
             url
         }
-        dispatch(petActions.addNewPet(newPet))
+        dispatch(petActions.editOwnedPet(editedPet))
         history.go(0);
     };
 
@@ -83,4 +83,4 @@ function AddPetForm() {
     )
 }
 
-export default AddPetForm;
+export default EditPetForm;

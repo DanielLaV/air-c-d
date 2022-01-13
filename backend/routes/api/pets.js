@@ -69,20 +69,22 @@ router.get(
 router.post(
     '/',
     asyncHandler(async (req, res, next) => {
-        const { name, type, url, forKids } = req.body;
-        const { userId } = req.body;
+        console.log("HELLO");
+        const { name, type, url, forKids, userId } = req.body;
+        console.log('in router', name, type, url, forKids, userId)
+        // const { userId } = req.body;
         const user = await User.findByPk(userId);
         if (user) {
             const pet = await Pet.create({ name, type, forKids });
             await PetOwner.create({
-                owner_id: userId,
-                pet_id: pet.id
+                ownerId: userId,
+                petId: pet.id
             });
             await Image.create({
-                pet_id: pet.id,
+                petId: pet.id,
                 url
             });
-            res.json({ userId });
+            res.json( pet );
         } else {
             const err = new Error('Failed to add your pet');
             err.status = 422;
@@ -124,8 +126,6 @@ router.delete(
     '/:petId',
     asyncHandler(async (req, res) => {
         const { petId } = req.body;
-        const pet = await Pet.findByPk(petId);
-        await pet.destroy();
         const petImage = await Image.findAll({
             where: { petId }
         });
@@ -134,6 +134,8 @@ router.delete(
             where: { petId }
         });
         await petOwner.destroy();
+        const pet = await Pet.findByPk(petId);
+        await pet.destroy();
         return res.json({ message: 'success' });
     })
 )
