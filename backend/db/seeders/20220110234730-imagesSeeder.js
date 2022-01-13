@@ -5,7 +5,7 @@ module.exports = {
     return queryInterface.bulkInsert('Images', [
       {
         petId: 1,
-        url: 'https://res.cloudinary.com/dsebdtcp0/image/upload/v1641850882/pets-air-cnd/dogs/Ino-2_csyhtf.jpg'
+        url: 'https://res.cloudinary.com/dsebdtcp0/image/upload/v1641850882/pets-air-cnd/dogs/Ino-3_c46x9g.jpg'
       },
       {
         petId: 2,
