@@ -59,7 +59,7 @@ console.log(newPet, 'NEW PET');
 }
 
 export const editPet = (editedPet) => async (dispatch) => {
-console.log(editedPet, 'NEW PET');
+console.log(editedPet, 'EDITED PET');
     // const { name, type, forKids, url } = newPet;
     const res = await csrfFetch(`/api/pets`, {
         method: 'POST',
@@ -71,6 +71,10 @@ console.log(editedPet, 'NEW PET');
     // console.log('DATA IS AN ANDROID', data);
     dispatch(addOwnedPet(data));
     return res;
+}
+
+export const deletePet = pet => async (dispatch) => {
+    const res = await csrfFetch(`/api/pets/${pet.id}`)
 }
 
 /* ----- REDUCER ------ */
