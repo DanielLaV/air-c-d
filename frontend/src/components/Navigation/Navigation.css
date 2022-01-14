@@ -7,9 +7,18 @@
 
 .userLinks {
     margin: 20px;
-    padding-right: 20px;
+    padding-right: 60px;
 }
 
 .logo {
-    height: 30px;
+    height: 40px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.profile-dropdown {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    height: 7%;
 }

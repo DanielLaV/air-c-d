@@ -40,9 +40,9 @@ function PetsPage() {
     return (
         <div className='petsPage'>
             <ul className='petTypeLinks'>
-                <li><button onClick={updatePetsType}>Dogs</button></li>
-                <li><button onClick={updatePetsType}>Cats</button></li>
-                <li><button onClick={updatePetsType}>Others</button></li>
+                <li><button className='petTypes' onClick={updatePetsType}>Dogs</button></li>
+                <li><button className='petTypes' onClick={updatePetsType}>Cats</button></li>
+                <li><button className='petTypes' onClick={updatePetsType}>Others</button></li>
             </ul>
 
             <div className='petImagesContainer'>
