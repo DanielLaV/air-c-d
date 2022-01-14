@@ -10,35 +10,39 @@ function ProfilePage() {
 
     const dispatch = useDispatch();
     const userPage = useParams().userId;
-    console.log('userPage', userPage);
+    // console.log('userPage', userPage);
+
+    let ownedPetsObject = useSelector(state => state.ownedPets);
+    let ownedPets = Object.values(ownedPetsObject);
 
     useEffect(() => {
-        console.log('userid', userId)
+        // console.log('userid', userId)
         dispatch(ownedPetActions.getOwnedPets(userId));
     }, [dispatch]);
 
 
-    let pets = useSelector(state => state.ownedPets);
     // console.log('pets from line 11', pets);
-    const [ownedPets, setOwnedPets] = useState(pets);
-    const [isAddingPet, setIsAddingPet] = useState(false);
+    // const [ownedPets, setOwnedPets] = useState(pets);
+    // const [isAddingPet, setIsAddingPet] = useState(false);
 
     const userId = useSelector(state => state.session?.user?.id);
-    const petModal = (<AddPetFormModal setIsAddingPet={setIsAddingPet} setOwnedPets={setOwnedPets} />)
+    // const petModal = (<AddPetFormModal setIsAddingPet={setIsAddingPet} setOwnedPets={setOwnedPets} />)
 
 
-    useEffect(() => {
-        // console.log('ownedpets', ownedPets)
-        setOwnedPets(pets);
-    }, [pets])
+    // useEffect(() => {
+    //     // console.log('ownedpets', ownedPets)
+    //     setOwnedPets(pets);
+    // }, [pets])
 
 
     return (
         <div className='profilePage'>
-            <button className='addPetButton' onClick={isAddingPet => setIsAddingPet(true)}>Add Pet</button>
-            {(+userId === +userPage) && isAddingPet && petModal}
+            {/* <button className='addPetButton' onClick={isAddingPet => setIsAddingPet(true)}>Add Pet</button> */}
+            {(+userId === +userPage) && <AddPetFormModal />}
             <div className='ownedPetsContainer'>
-                {Array.isArray(ownedPets) && ownedPets?.map(pet => (<div className='ownedPetsImage' key={pet.id}> <ProfilePet pet={pet} userId={userId} /> </div>))}
+                {/* {console.log('ownedpetsObj', ownedPetsObject)}
+                {console.log('ownedpets', ownedPets)} */}
+                {Array.isArray(ownedPets) && ownedPets[2]?.map(pet => (<div className='ownedPetsImage' key={pet.id}> <ProfilePet pet={pet} userId={userId} /> </div>))}
             </div>
         </div>
     )

@@ -61,7 +61,7 @@ export const addNewPet = (newPet) => async (dispatch) => {
         )
     })
     const data = await res.json();
-    // console.log('DATA IS AN ANDROID', data);
+    console.log('DATA IS AN ANDROID', data);
     dispatch(addOwnedPet(data));
     return res;
 }
@@ -74,9 +74,9 @@ export const editPet = (editedPet) => async (dispatch) => {
         method: 'POST',
         body: JSON.stringify(
             editedPet
-            )
-        })
-        // console.log('=========EDITED PET 2', editedPet);
+        )
+    })
+    // console.log('=========EDITED PET 2', editedPet);
     const data = await res.json();
     // console.log('DATA IS AN ANDROID', data);
     dispatch(loadOwnedPets(data));

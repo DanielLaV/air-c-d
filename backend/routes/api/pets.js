@@ -69,7 +69,7 @@ router.get(
 router.post(
     '/:petId',
     asyncHandler(async (req, res, next) => {
-        console.log('IN THE /pets/petId route');
+        // console.log('IN THE /pets/petId route');
         const { userId, petId, name, type, url, forKids } = req.body;
 
         // const user = await User.findByPk(userId);
@@ -100,22 +100,31 @@ router.post(
 router.post(
     '/',
     asyncHandler(async (req, res, next) => {
-        console.log("HELLO");
+        // console.log("HELLO");
         const { name, type, url, forKids, userId } = req.body;
-        console.log('in router', name, type, url, forKids, userId)
+        // console.log('in router', name, type, url, forKids, userId)
         // const { userId } = req.body;
         const user = await User.findByPk(userId);
         if (user) {
-            const pet = await Pet.create({ name, type, forKids });
+            const newPet = await Pet.create({ name, type, forKids });
             await PetOwner.create({
                 ownerId: userId,
-                petId: pet.id
+                petId: newPet.id
             });
-            await Image.create({
-                petId: pet.id,
+            const img = await Image.create({
+                petId: newPet.id,
                 url
             });
-            res.json( pet );
+            const pet = await Pet.findOne({
+                where: { id: newPet.id },
+                include: [{
+                    model: Image,
+                    attributes: ["url"],
+                }],
+            })
+
+            // console.log('IMG', pet)
+            res.json(pet);
         } else {
             const err = new Error('Failed to add your pet');
             err.status = 422;
@@ -130,7 +139,7 @@ router.post(
 router.delete(
     '/:petId',
     asyncHandler(async (req, res) => {
-        console.log('in the delete route')
+        // console.log('in the delete route')
         const { petId } = req.params;
         // const petImage = await Image.findAll({
         //     where: { petId }

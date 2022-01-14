@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import './AddPetForm.css';
 
 
-function AddPetForm() {
+function AddPetForm({setShowModal}) {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -29,8 +29,9 @@ function AddPetForm() {
             forKids,
             url
         }
-        history.push(`/users/${userId}`);
-        return dispatch(petActions.addNewPet(newPet));
+        dispatch(petActions.addNewPet(newPet));
+        setShowModal(false);
+        // history.push(`/users/${userId}`);
         // history.go(0);
     };
 

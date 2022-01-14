@@ -9,7 +9,7 @@ function EditPetFormModal({pet}) {
         <>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <EditPetForm pet={pet}/>
+                    <EditPetForm pet={pet} setShowModal={setShowModal} />
                 </Modal>
             )}
         </>

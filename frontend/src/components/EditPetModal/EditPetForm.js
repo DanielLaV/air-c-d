@@ -6,16 +6,16 @@ import { useHistory } from 'react-router-dom';
 import "./EditPetForm.css";
 
 
-function EditPetForm({ pet }) {
+function EditPetForm({ pet, setShowModal }) {
     const dispatch = useDispatch();
     const history = useHistory();
-    // console.log('EDIT PET IS ', pet);
+    console.log('EDIT PET IS ', pet);
 
     const userId = useSelector(state => state.session.user.id);
-    const [name, setName] = useState(pet.Pets[0].name);
-    const [type, setType] = useState(pet.Pets[0].type);
-    const [forKids, setForKids] = useState(pet.Pets[0].forKids);
-    const [url, setUrl] = useState(pet.Pets[0].Images[0].url);
+    const [name, setName] = useState(pet.name);
+    const [type, setType] = useState(pet.type);
+    const [forKids, setForKids] = useState(pet.forKids);
+    const [url, setUrl] = useState(pet.Images[0].url);
     const [errors, setErrors] = useState([]);
 
 
@@ -32,7 +32,8 @@ function EditPetForm({ pet }) {
             url
         }
         dispatch(ownedPetActions.editPet(editedPet))
-        history.go(0);
+        setShowModal(false);
+        // history.go(0);
     };
 
 
@@ -82,7 +83,7 @@ function EditPetForm({ pet }) {
                         checked={forKids}
                     />
                 </label>
-                <button editClick>Edit Pet</button>
+                <button className="editClick">Edit Pet</button>
             </form>
         </div>
     )

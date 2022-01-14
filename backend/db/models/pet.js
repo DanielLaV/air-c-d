@@ -12,12 +12,12 @@ module.exports = (sequelize, DataTypes) => {
   Pet.associate = function(models) {
     const userMapping = {
       through: "PetOwner",
-      otherKey: "owner_id",
+      otherKey: "ownerId",
       foreignKey: "id"
     };
 
     Pet.belongsTo(models.User, userMapping);
-    Pet.hasMany(models.Image, { foreignKey: "id" });
+    Pet.hasMany(models.Image, { foreignKey: "petId" });
     // Pet.belongsTo(models.PetOwner, { foreignKey: "pet_id" });
   };
   return Pet;

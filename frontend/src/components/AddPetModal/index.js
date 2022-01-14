@@ -3,14 +3,14 @@ import { Modal } from '../../context/Modal';
 import AddPetForm from './AddPetForm';
 
 function AddPetFormModal() {
-    const [showModal, setShowModal] = useState(true);
+    const [showModal, setShowModal] = useState(false);
 
     return (
         <>
-            {/* <button className='addPetButton' onClick={() => setShowModal(true) }>Add new pet</button> */}
+            <button className='addPetButton' onClick={() => setShowModal(true) }>Add new pet</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <AddPetForm />
+                    <AddPetForm setShowModal={setShowModal} />
                 </Modal>
             )}
         </>

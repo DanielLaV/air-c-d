@@ -16,6 +16,9 @@ function ProfilePet({ pet, userId = null }) {
     const [isEditingPet, setIsEditingPet] = useState(false);
     const editModal = (<EditPetFormModal pet={pet} />)
 
+
+// console.log('PET IS', pet)
+
     const onDeleteClick = e => {
         e.preventDefault();
 
@@ -25,9 +28,10 @@ function ProfilePet({ pet, userId = null }) {
 
     return (
         <div className="singlePetContainer">
-            <img className="petImage" src={pet.Pets[0].Images[0]?.url} />
+
+            <img className="petImage" src={pet.Images[0]?.url} />
             <div className="belowPetContainer">
-            <p className="petName">{pet.Pets[0].name}</p>
+            <p className="petName">{pet.name}</p>
             {userId && (
                 <div className="petButtons">
                     <button className="petEditButton" onClick={() => setIsEditingPet(true)}>Edit</button>
