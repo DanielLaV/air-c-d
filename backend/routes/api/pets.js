@@ -66,10 +66,11 @@ router.get(
     }),
 );
 
+// Edit a pet
 router.post(
     '/:petId',
     asyncHandler(async (req, res, next) => {
-        // console.log('IN THE /pets/petId route');
+        console.log('IN THE /pets/petId route');
         const { userId, petId, name, type, url, forKids } = req.body;
 
         // const user = await User.findByPk(userId);
@@ -77,7 +78,7 @@ router.post(
             // const pet = await Pet.findByPk(petId);
             // const image = await Image.findOne({ where: petId });
             await Pet.update(
-                { name, type, forKids},
+                { name, type, forKids },
                 { where: { id: petId }}
             );
             await Image.update(

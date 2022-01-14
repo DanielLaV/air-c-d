@@ -77,9 +77,9 @@ export const editPet = (editedPet) => async (dispatch) => {
         )
     })
     // console.log('=========EDITED PET 2', editedPet);
-    const data = await res.json();
+    await res.json();
     // console.log('DATA IS AN ANDROID', data);
-    dispatch(loadOwnedPets(data));
+    dispatch(loadOwnedPets(editedPet));
     return res;
 }
 
@@ -103,15 +103,18 @@ const ownedPetsReducer = (state = initialState, action) => {
         case LOAD_OWNED_PETS: {
             let newState = Object.assign({}, state);
             // console.log('NewState 1', newState)
-            newState = action.payload;
+            newState = {
+                ...newState,
+                [action.payload.id]: action.payload
+            }
             // console.log('NewState 2', newState)
             return newState;
         }
         case ADD_OWNED_PET: {
-            let newState = Object.assign({}, state);
+            let newState;
             // console.log('payload', action.payload);
             newState = {
-                ...newState,
+                ...state,
                 [action.payload.id]: action.payload
             };
             return newState;

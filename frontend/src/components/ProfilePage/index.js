@@ -40,9 +40,9 @@ function ProfilePage() {
             {/* <button className='addPetButton' onClick={isAddingPet => setIsAddingPet(true)}>Add Pet</button> */}
             {(+userId === +userPage) && <AddPetFormModal />}
             <div className='ownedPetsContainer'>
-                {/* {console.log('ownedpetsObj', ownedPetsObject)}
-                {console.log('ownedpets', ownedPets)} */}
-                {Array.isArray(ownedPets) && ownedPets[2]?.map(pet => (<div className='ownedPetsImage' key={pet.id}> <ProfilePet pet={pet} userId={userId} /> </div>))}
+                {console.log('ownedpetsObj', ownedPetsObject)}
+                {console.log('ownedpets', ownedPets)}
+                {Array.isArray(ownedPets) && ownedPets[0]?.Pets.map(pet => (<div className='ownedPetsImage' key={pet.id}> <ProfilePet pet={pet} userId={userId} /> </div>))}
             </div>
         </div>
     )

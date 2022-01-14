@@ -7,7 +7,10 @@ import Pet from './Pet.js';
 function PetsPage() {
 
     let pets = useSelector(state => state.pets);
+    const petsArr = Object.values(pets);
     const dispatch = useDispatch();
+    console.log('PETS IS ', pets)
+    console.log('PETSARR IS ', petsArr)
 
     const [petsType, setPetsType] = useState('dogs');
 
@@ -16,7 +19,6 @@ function PetsPage() {
     }
 
     useEffect(() => {
-        // console.log('PETS IS ', pets)
         dispatch(petActions.getDogs());
 
     }, [dispatch]);
@@ -25,7 +27,7 @@ function PetsPage() {
         setPetsType(petsType);
         if (petsType === 'dogs') {
             pets = dispatch(petActions.getDogs())
-            console.log('PETS28', pets)
+            // console.log('PETS28', pets)
         }
         if (petsType === 'cats') {
             pets = dispatch(petActions.getCats())
@@ -44,7 +46,7 @@ function PetsPage() {
             </ul>
 
             <div className='petImagesContainer'>
-                {pets?.pets?.map(pet => <div key={pet.id}> <Pet pet={pet} /> </div>)}
+                {Array.isArray(petsArr) && petsArr[0]?.map(pet => <div key={pet.id}> <Pet pet={pet} /> </div>)}
             </div>
         </div>
     )

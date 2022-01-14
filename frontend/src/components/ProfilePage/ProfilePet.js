@@ -11,9 +11,9 @@ function ProfilePet({ pet, userId = null }) {
     // const userId = useSelector(state => state.session?.user?.id);
     const userPage = useParams().userId;
     const dispatch = useDispatch();
-    const history = useHistory();
 
-    const [isEditingPet, setIsEditingPet] = useState(false);
+
+    const [showModal, setShowModal] = useState(false);
     const editModal = (<EditPetFormModal pet={pet} />)
 
 
@@ -23,7 +23,7 @@ function ProfilePet({ pet, userId = null }) {
         e.preventDefault();
 
         dispatch(petActions.deletePet(pet));
-        history.go(0);
+
     }
 
     return (
@@ -34,8 +34,8 @@ function ProfilePet({ pet, userId = null }) {
             <p className="petName">{pet.name}</p>
             {userId && (
                 <div className="petButtons">
-                    <button className="petEditButton" onClick={() => setIsEditingPet(true)}>Edit</button>
-                    {(+userId === +userPage) && isEditingPet && editModal}
+                    <button className="petEditButton" onClick={() => setShowModal(true)}>Edit</button>
+                    {(+userId === +userPage) && showModal && editModal}
                     <button className="petDeleteButton" onClick={onDeleteClick}>Delete</button>
                 </div>
             )}
