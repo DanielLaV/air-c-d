@@ -29,8 +29,9 @@ function AddPetForm() {
             forKids,
             url
         }
-        dispatch(petActions.addNewPet(newPet))
-        history.go(0);
+        history.push(`/users/${userId}`);
+        return dispatch(petActions.addNewPet(newPet));
+        // history.go(0);
     };
 
 

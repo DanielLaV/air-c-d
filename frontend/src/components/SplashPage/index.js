@@ -1,14 +1,14 @@
-// import mainImage from '/images/assets/Ino-1.jpg';
 import './SplashPage.css';
-
-
+import { NavLink } from 'react-router-dom';
 
 
 function SplashPage() {
     return (
         <div className='splash'>
             <div className='mainImg'>
-                <a className='petsLink' href='/pets'>Come Play!</a>
+                <NavLink exact to="/pets">
+                    <p className='petsLink'>Come Play!</p>
+                </NavLink>
             </div>
         </div>
     )
