@@ -37,3 +37,20 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
+.petName {
+    margin-left: 20px;
+}
+
+.petEditButton {
+    border: none;
+    color: #43493A;
+    margin-top: 5px;
+
+}
+
+.petDeleteButton{
+    border: none;
+    color: red;
+    margin-top: 5px;
+}

@@ -39,3 +39,9 @@
     width: 65%;
     align-self: center;
 }
+
+.addPetButton{
+    border: none;
+    margin-left: 60px;
+    margin-right: 20px;
+}
