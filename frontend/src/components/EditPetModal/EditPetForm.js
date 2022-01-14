@@ -24,15 +24,20 @@ function EditPetForm({ pet, setShowModal }) {
         setErrors([]);
 
         const editedPet = {
-            petId: pet.id,
+            id: pet.id,
             userId,
             name,
             type,
             forKids,
             url
         }
-        dispatch(ownedPetActions.editPet(editedPet))
-        setShowModal(false);
+        const res = await dispatch(ownedPetActions.editPet(editedPet));
+        if (res.ok) {
+            setShowModal(false);
+            history.push(`/users/${userId}`)
+        };
+        // dispatch(ownedPetActions.editPet(editedPet))
+        // setShowModal(false);
         // history.go(0);
     };
 

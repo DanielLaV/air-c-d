@@ -67,11 +67,11 @@ router.get(
 );
 
 // Edit a pet
-router.post(
+router.put(
     '/:petId',
     asyncHandler(async (req, res, next) => {
         console.log('IN THE /pets/petId route');
-        const { userId, petId, name, type, url, forKids } = req.body;
+        const { userId, id, name, type, url, forKids } = req.body;
 
         // const user = await User.findByPk(userId);
         if (userId) {
@@ -79,15 +79,18 @@ router.post(
             // const image = await Image.findOne({ where: petId });
             await Pet.update(
                 { name, type, forKids },
-                { where: { id: petId }}
+                { where: { id }}
             );
             await Image.update(
                 { url },
-                { where: { petId }}
+                { where: { id }}
             );
+
+            const pet = await Pet.findByPk(id, {include: Image})
+            res.json(pet);
             // console.log('PET IS ', pet)
             // console.log('image IS ', image)
-            res.json("Your pet has been edited");
+            // res.json("Your pet has been edited");
         } else {
             const err = new Error('Failed to add your pet');
             err.status = 422;

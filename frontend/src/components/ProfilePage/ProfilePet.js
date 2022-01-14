@@ -11,34 +11,36 @@ function ProfilePet({ pet, userId = null }) {
     // const userId = useSelector(state => state.session?.user?.id);
     const userPage = useParams().userId;
     const dispatch = useDispatch();
+    const history = useHistory();
 
 
-    const [showModal, setShowModal] = useState(false);
-    const editModal = (<EditPetFormModal pet={pet} />)
+    // const [showModal, setShowModal] = useState(false);
+    // const editModal = (<EditPetFormModal pet={pet} />)
+    const [isEditingPet, setIsEditingPet] = useState(false);
+    const editModal = (<EditPetFormModal pet={pet} setIsEditingPet={setIsEditingPet} isEditingPet={isEditingPet} />)
 
 
-// console.log('PET IS', pet)
+    // console.log('PET IS', pet)
 
     const onDeleteClick = e => {
         e.preventDefault();
 
         dispatch(petActions.deletePet(pet));
-
     }
 
     return (
         <div className="singlePetContainer">
 
-            <img className="petImage" src={pet.Images[0]?.url} />
+            <img className="petImage" src={pet?.Images[0]?.url} />
             <div className="belowPetContainer">
-            <p className="petName">{pet.name}</p>
-            {userId && (
-                <div className="petButtons">
-                    <button className="petEditButton" onClick={() => setShowModal(true)}>Edit</button>
-                    {(+userId === +userPage) && showModal && editModal}
-                    <button className="petDeleteButton" onClick={onDeleteClick}>Delete</button>
-                </div>
-            )}
+                <p className="petName">{pet.name}</p>
+                {userId && (
+                    <div className="petButtons">
+                        <button className="petEditButton" onClick={() => setIsEditingPet(true)}>Edit</button>
+                        {isEditingPet && editModal}
+                        <button className="petDeleteButton" onClick={onDeleteClick}>Delete</button>
+                    </div>
+                )}
             </div>
         </div>
     )

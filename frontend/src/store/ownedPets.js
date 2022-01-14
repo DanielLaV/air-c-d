@@ -1,9 +1,9 @@
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { csrfFetch } from "./csrf";
 
 export const LOAD_OWNED_PETS = "LOAD_OWNED_PETS";
 export const ADD_OWNED_PET = "ADD_OWNED_PET";
-// export const EDIT_OWNED_PET = "EDIT_OWNED_PET";
+export const EDIT_OWNED_PET = "EDIT_OWNED_PET";
 export const DELETE_OWNED_PET = "DELETE_OWNED_PET";
 
 
@@ -25,17 +25,17 @@ export const addOwnedPet = (newPet) => {
     }
 }
 
-// export const editOwnedPet = ownedPets => {
-//     return {
-//         type: EDIT_OWNED_PET,
-//         payload: ownedPets
-//     }
-// }
+export const editOwnedPet = editedPet => {
+    return {
+        type: EDIT_OWNED_PET,
+        payload: editedPet
+    }
+}
 
-export const deleteOwnedPet = ownedPets => {
+export const deleteOwnedPet = id => {
     return {
         type: DELETE_OWNED_PET,
-        payload: ownedPets
+        payload: id
     }
 }
 
@@ -68,18 +68,18 @@ export const addNewPet = (newPet) => async (dispatch) => {
 
 export const editPet = (editedPet) => async (dispatch) => {
     // const { name, type, forKids, url } = newPet;
-    // console.log('=========EDITED PET 1', editedPet);
+    console.log('=========EDITED PET 1', editedPet);
 
-    const res = await csrfFetch(`/api/pets/${editedPet.petId}`, {
-        method: 'POST',
+    const res = await csrfFetch(`/api/pets/${editedPet.id}`, {
+        method: 'PUT',
         body: JSON.stringify(
             editedPet
         )
     })
     // console.log('=========EDITED PET 2', editedPet);
-    await res.json();
+    const data = await res.json();
     // console.log('DATA IS AN ANDROID', data);
-    dispatch(loadOwnedPets(editedPet));
+    dispatch(addOwnedPet(data));
     return res;
 }
 
@@ -90,8 +90,8 @@ export const deletePet = pet => async (dispatch) => {
             pet
         )
     })
-    const data = await res.json();
-    dispatch(deleteOwnedPet(data));
+    // const data = await res.json();
+    dispatch(deleteOwnedPet(pet.id));
     return res;
 }
 
@@ -103,28 +103,30 @@ const ownedPetsReducer = (state = initialState, action) => {
         case LOAD_OWNED_PETS: {
             let newState = Object.assign({}, state);
             // console.log('NewState 1', newState)
-            newState = {
-                ...newState,
-                [action.payload.id]: action.payload
-            }
+            // newState = {
+                // ...newState,
+                // [action.payload.id]: action.payload
+            // }
+            action.payload.Pets.forEach(pet => newState[pet.id] = pet);
             // console.log('NewState 2', newState)
             return newState;
         }
         case ADD_OWNED_PET: {
-            let newState;
+            let newState = Object.assign({}, state);
             // console.log('payload', action.payload);
             newState = {
-                ...state,
+                ...newState,
                 [action.payload.id]: action.payload
             };
             return newState;
         }
         case DELETE_OWNED_PET: {
             let newState = Object.assign({}, state);
-            newState = {
-                ...newState,
-                [action.payload.id]: null
-            };
+            // newState = {
+            //     ...newState,
+            //     [action.payload.id]: null
+            // };
+            delete newState[action.payload];
             return newState;
         }
         default: return state;
