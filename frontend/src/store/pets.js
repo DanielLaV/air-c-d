@@ -18,11 +18,7 @@ export const getDogs = () => async (dispatch) => {
     const res = await csrfFetch('/api/pets', {
         method: 'GET',
     });
-    // console.log('RES IN THE THUNK IS', res);
     const data = await res.json();
-    // console.log('DATA is an android', data);
-    // console.log('DATA type', typeof data);
-    // console.log('DATA is array', Array.isArray(data));
     dispatch(loadPets(data));
     return res;
 }
@@ -53,9 +49,7 @@ const petsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_PETS: {
             let newState = Object.assign({}, state);
-            // console.log('NewState 1', newState)
             newState.pets = action.payload;
-            // console.log('NewState 2', newState)
 
             return newState;
         }

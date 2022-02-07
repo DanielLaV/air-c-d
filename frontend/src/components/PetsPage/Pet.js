@@ -1,8 +1,6 @@
 import './PetsPage.css';
 
 function Pet({ pet, userId = null }) {
-
-// console.log('inner pet', pet)
     return (
         <div className="singlePet">
             <img className="petImage" src={pet.Images[0].url} />
