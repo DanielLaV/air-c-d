@@ -1,14 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as petActions from '../../store/ownedPets';
-// import * as ownedPetActions from '../../store/ownedPets';
-import { useHistory } from 'react-router-dom';
 import './AddPetForm.css';
 
 
 function AddPetForm({setShowModal}) {
     const dispatch = useDispatch();
-    const history = useHistory();
 
     const userId = useSelector(state => state.session.user.id);
     const [name, setName] = useState('');
@@ -31,8 +28,6 @@ function AddPetForm({setShowModal}) {
         }
         dispatch(petActions.addNewPet(newPet));
         setShowModal(false);
-        // history.push(`/users/${userId}`);
-        // history.go(0);
     };
 
 
