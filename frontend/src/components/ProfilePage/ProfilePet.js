@@ -1,26 +1,19 @@
 import { useState } from "react";
 import './ProfilePage.css';
 import EditPetFormModal from "../EditPetModal";
-// import { useSelector } from 'react-redux';
-import { useParams, useHistory } from "react-router-dom";
 import * as petActions from '../../store/ownedPets';
 import { useDispatch } from "react-redux";
 
 
 function ProfilePet({ pet, userId = null }) {
-    // const userId = useSelector(state => state.session?.user?.id);
-    const userPage = useParams().userId;
+
     const dispatch = useDispatch();
-    const history = useHistory();
 
-
-    // const [showModal, setShowModal] = useState(false);
-    // const editModal = (<EditPetFormModal pet={pet} />)
     const [isEditingPet, setIsEditingPet] = useState(false);
     const editModal = (<EditPetFormModal pet={pet} setIsEditingPet={setIsEditingPet} isEditingPet={isEditingPet} />)
 
 
-    // console.log('PET IS', pet)
+
 
     const onDeleteClick = e => {
         e.preventDefault();

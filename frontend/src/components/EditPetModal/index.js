@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Modal } from '../../context/Modal';
 import EditPetForm from './EditPetForm';
 
 function EditPetFormModal({pet, setIsEditingPet, isEditingPet}) {
-    // const [showModal, setShowModal] = useState(true);
+
     const handleClose = () => {
         setIsEditingPet(false);
     }
