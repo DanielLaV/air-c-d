@@ -1,8 +1,16 @@
+.navWrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
 .navBar {
     display: flex;
     flex-direction: row;
     justify-content:space-between;
     list-style: none;
+    width: 100%;
+    max-width: 1080px;
 }
 
 .userLinks {

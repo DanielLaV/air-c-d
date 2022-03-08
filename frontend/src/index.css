@@ -12,12 +12,6 @@ h1 h2 h3 h4 {
 
 .root {
     display: flex;
-
-}
-
-.gllinks {
-    display: flex;
-    justify-content: space-around;
-    bottom: 0px;
-    list-style-type: none;
+    flex-direction: row;
+    justify-content: center;
 }

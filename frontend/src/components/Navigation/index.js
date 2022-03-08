@@ -8,7 +8,7 @@ import './Navigation.css';
 import SignupFormModal from '../SignupFormModal';
 
 
-function Navigation({ isLoaded }){
+function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
 
   let sessionLinks;
@@ -26,16 +26,18 @@ function Navigation({ isLoaded }){
   }
 
   return (
-    <ul className='navBar'>
-      <li className='logoListItem'>
-        <NavLink exact to="/">
-          <img className="logo" src={logo} />
-        </NavLink>
-      </li>
-      <li className='sessionLinks'>
-        {isLoaded && sessionLinks}
-      </li>
-    </ul>
+    <div className="navWrapper">
+      <ul className='navBar'>
+        <li className='logoListItem'>
+          <NavLink exact to="/">
+            <img className="logo" src={logo} />
+          </NavLink>
+        </li>
+        <li className='sessionLinks'>
+          {isLoaded && sessionLinks}
+        </li>
+      </ul>
+    </div>
   );
 }
 
