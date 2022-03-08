@@ -1,0 +1,88 @@
+footer {
+  background-color: #F6FBEC;
+  position: fixed;
+  font-family: Arial, Helvetica, sans-serif;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 4vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+
+-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+-moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.footerTech {
+  display: flex;
+  width: 100%;
+  font-size: small;
+  /* padding: 2px 0 2px 0; */
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 1px solid gray;
+}
+
+.techs {
+  height: 1.5vh;
+}
+
+.footerProfiles{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.gitlogo{
+  height: 1.5vh;
+  border-radius: 50%;
+  margin-bottom: 2px;
+}
+
+.gitlogo:hover{
+  transform: scale(1.3);
+}
+
+
+.linkedinlogo {
+  height: 12px;
+  width: 12px;
+  border-radius: 10%;
+  margin: 4px;
+}
+
+.linkedinlogo:hover{
+  transform: scale(1.2);
+}
+
+
+#footer_names:hover + .linkedinlink {
+  transform: scale(1.2);
+}
+
+.linkedinlink:hover ~ #footer_names {
+  color: #27A9E1;
+
+}
+
+#footer_names {
+  font-size: 12px;
+  margin-right: 3px;
+  text-decoration: none;
+  color: darkslategray;
+
+
+}
+#footer_names:visited{
+  color: darkslategray;
+}
+
+
+#footer_names:hover{
+  cursor: pointer;
+  color: #27A9E1;
+}

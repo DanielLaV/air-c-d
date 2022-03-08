@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import SplashPage from "./components/SplashPage";
 import PetsPage from "./components/PetsPage";
+import Footer from "./components/Footer";
 import ProfilePage from "./components/ProfilePage";
 import * as sessionActions from "./store/session";
 import SignupFormModal from "./components/SignupFormModal";
@@ -34,6 +35,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }

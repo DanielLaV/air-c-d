@@ -8,12 +8,13 @@
 
 .mainImg {
     background-image: url('../../images/Ino-1.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
     /* background: linear-gradient(0deg, #00000088 30%, #ffffff44 100%); */
     /* background-color: red; */
     display:flex;
     min-width: 85vw;
     min-height: 45vh;
-    border-radius: 5%;
 }
 
 .petsLink {
