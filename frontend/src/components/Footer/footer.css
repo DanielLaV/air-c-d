@@ -28,17 +28,18 @@ box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
 
 .techs {
-  height: 1.5vh;
+  height: 2vh;
 }
 
 .footerProfiles{
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 }
 
 .gitlogo{
-  height: 1.5vh;
+  height: 1.9vh;
   border-radius: 50%;
   margin-bottom: 2px;
 }
@@ -49,8 +50,8 @@ box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 
 
 .linkedinlogo {
-  height: 12px;
-  width: 12px;
+  height: 1.9vh;
+  width: 1.9vh;
   border-radius: 10%;
   margin: 4px;
 }
@@ -70,11 +71,11 @@ box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
 
 #footer_names {
-  font-size: 12px;
+  font-size: 2vh;
   margin-right: 3px;
   text-decoration: none;
   color: darkslategray;
-
+  margin-bottom: 0.5vh;
 
 }
 #footer_names:visited{
