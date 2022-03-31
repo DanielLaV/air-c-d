@@ -39,7 +39,7 @@
 .sessionLinks {
     display: flex;
     flex-direction: column;
-    align-items: end;
+    align-items: flex-end;
     position: absolute;
     background-color: transparent;
     right: 0;
